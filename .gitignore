@@ -1,0 +1,7 @@
+node_modules
+views
+public
+routes
+package-lock.json
+app.js
+package.json
