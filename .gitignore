@@ -5,3 +5,4 @@ routes
 package-lock.json
 app.js
 package.json
+.env

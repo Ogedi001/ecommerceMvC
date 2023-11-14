@@ -28,15 +28,6 @@ app.get("/posts", authFunc, (req, res) => {
   res.json(authUserPost);
 });
 
-app.post("/login", (req, res) => {
-  // First authenticate user
-  const username = req.body.username;
-  console.log("Authenticated Username:", username);
-
-  const user = { name: username };
-  const jwtToken = jwt.sign(user, process.env.JWT_TOKEN);
-  res.json({ jwtToken });
-});
 
 
 function authFunc(req, res, next) {
@@ -46,7 +37,7 @@ function authFunc(req, res, next) {
         return res.sendStatus(401)
     }
     
-    jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {
+    jwt.verify(token, process.env.JWT_ACCESS_TOKEN, (err, user) => {
         if (!err) {
 
             console.log(user)
@@ -61,4 +52,7 @@ function authFunc(req, res, next) {
     })
 
 }
+
+// N/B: bearer token can work in different server
+//this servers uses token generated in authBearerToken server
 app.listen(3000);
